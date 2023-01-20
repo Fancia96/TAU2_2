@@ -8,10 +8,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -66,6 +63,18 @@ public class FindTest {
         WebElement p = driver.findElement(By.tagName("h1"));
 
         assertNotNull(p);
+    }
+
+    @Test
+    public void testNotFindingElement() {
+        WebElement notFoundElement = null;
+
+        try {
+            notFoundElement = driver.findElement(By.id("not-found-element"));
+        } catch (NoSuchElementException e) {
+        }
+
+        assertNull(notFoundElement);
     }
 
     @Test
